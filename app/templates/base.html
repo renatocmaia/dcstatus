@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DC Status</title>
+<link rel="stylesheet" href="{{url_for('static',filename="css/bootstrap.min.css")}}">
+<link rel="shortcut icon" href="{{url_for('static',filename="images/favicon.ico")}}" type="image/x-icon">
+<meta name="description" content="Our first page">
+<meta name="keywords" content="html tutorial template">
+</head>
+<body>
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand text-white">
+    <img rel="shortcut icon"  src="{{url_for('static',filename="images/stone5.png")}}" width="30" height="30" class="d-inline-block align-top" alt="">   Stone
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('app_internal') }}">Internal DNS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<!-- FIM Header -->
+{% block content %}
+{% endblock %}
+
+  
+
+<!--  Footer -->
+<div class="pt-5 bg-dark" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 my-3 text-center">
+          <p class="text-muted">© Copyright 2018 Stone - All rights reserved.</p>
+          <p class="text-muted">S.I.A.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIM  Footer -->
+  <script src="{{ url_for('static', filename="js/jquery-3.2.1.slim.min.js") }}"> </script>
+  <script src="{{ url_for('static', filename="js/popper.min.js") }}"> </script>
+  <script src="{{ url_for('static', filename="js/bootstrap.min.js") }}"> </script>
+
+</body>
+</html>
+

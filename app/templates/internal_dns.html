@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="py-4">
+    <div class="container">
+      <div class="row">
+	<div class="col-md-2">
+		  <img class="img-fluid d-block" src="{{url_for('static',filename="images/stone.png")}}">
+        </div>
+        <div class="col-md-8">
+          <h1 class="text-center">Aplicações x DataCenter</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="lead text-center">Em que DataCenter estamos?</p>
+        </div>
+      </div>
+	<div class="row">
+         <div class="col-md-12">
+          <div class="text-center">
+	    <button type="button" class="btn btn-success btn-sm" active>Online</button>
+            <button type="button" class="btn btn-secondary btn-sm" disabled>Offline</button>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 table-responsive">
+          <table class="table table-bordered table-hover table-striped text-center">
+            <thead>
+              <tr class="bg-success text-white">
+                <th>#</th>
+                <th>cname</th>
+                 <th>HostNameAlias</th>
+                <th>Server Central</th>
+                <th>Tier Point</th>
+              </tr>
+            </thead>
+            <tbody>
+            	{{ ip }}	
+            {% for elem in data %}
+            	{% for d in elem['dados'] %} 
+
+			             <tr>
+			             	{% if d['cname'] == elem['dados'][0]['cname'] %}
+							<td rowspan="{{ elem['dados'] | length }}" style="vertical-align : middle;text-align:center;">{{ elem['time'] }}</td>
+							{% endif %}
+				                <td>{{ d['cname'] }}</td>
+				         		<td>{{ d['ip'][0]}}</td>
+				         	
+				         		{% if d['dc1'] == d['ip'][2] | replace("['", '' ) | replace("']", "") %}
+				                <td><button type="button" class="btn btn-success btn-sm" >{{ d['dc1'] }}</button></td>
+				                {% else %}
+				                <td><button type="button" class="btn btn-secondary btn-sm" disabled>{{ d['dc1'] }}</button></td>
+				                {% endif %}
+
+								{% if d['dc2'] == d['ip'] %}
+				                <td><button type="button" class="btn btn-success btn-sm" >{{ d['dc2'] }}</button></td>
+				                 {% else %}
+				                <td><button type="button" class="btn btn-secondary btn-sm" disabled>{{ d['dc2'] }}</button></td>
+				                 {% endif %}
+			             </tr>
+             	   {% endfor %}
+             {% endfor %}
+	 		</tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
